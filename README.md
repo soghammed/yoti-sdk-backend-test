@@ -1,5 +1,5 @@
-## Solution  
-db connection details within index.js  
+## Solution using node.js + mysql
+db connection details within index.js
 
 ```javascript
 cd into root  
