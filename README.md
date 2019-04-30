@@ -2,9 +2,10 @@
 db connection details within index.js
 
 ```javascript
+git clone https://github.com/soghammed/yoti-sdk-backend-test.git
 cd into root  
 npm install  
-npm start  
+npm start  |  node index
 navigate to localhost:1111 and enter input or add "/{input}" to url; 
 
 
