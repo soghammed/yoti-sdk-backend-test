@@ -8,7 +8,11 @@
 	  crossorigin="anonymous"></script>
 	<style>
 		.wrapper{
-			width:50%;margin:auto;text-align: center;position:relative;top:100px
+			width:50%;
+			margin:auto;
+			text-align: center;
+			position:relative;
+			top:100px
 		}
 		textarea{
 			width:300px;
@@ -21,14 +25,13 @@
 	<div class="wrapper">
 		<h3>Input Specs json</h3>
 		<form method="post" action="/addInput" id="inputForm">
-			<textarea name="input"></textarea><br/>
-			<input type="submit" value="run service"></input>
+			<textarea name="input"></textarea>
+			<br/>
+			<input type="submit" value="run service"/>
 		</form>
 		<hr>
 		<h3>Result:</h3>
-		<div class="results">
-			json output will appear here
-		</div>
+		<div class="results">json output will appear here</div>
 	</div>
 	
 	<script>
@@ -37,9 +40,9 @@
 				e.preventDefault();
 				$.ajax({
 					url: "/addInput/"+$("textarea[name='input']").val(),
-					// data: {input: $("textarea[name='input']").val()},
 					success: function(data, status){
 						if(status.trim() == "success"){
+							console.log(data);
 							document.getElementsByClassName('results')[0].innerHTML = JSON.stringify(data);
 						}
 					},
@@ -48,7 +51,7 @@
 					}
 				})
 			});
-		})
+		})	
 	</script>
 </body>
 </html>

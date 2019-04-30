@@ -13,9 +13,9 @@ class RoboticHover {
 		};
 		this.room = [];
 		this.roomInit = () => {
-			for(var x = 0; x < this.specs.roomSize[1]; x++){
+			for(var x = 0; x < this.specs.roomSize[0]; x++){
 				this.room[x] = [];
-				for(var y = 0; y < this.specs.roomSize[0]; y++){
+				for(var y = 0; y < this.specs.roomSize[1]; y++){
 					let coords = [x,y];
 					let isRobotInitPosition = this.specs.coords[0] == x ? this.specs.coords[1] == y ? 1 : null: null;
 					//R = RobotPosition, C = Clean
@@ -26,7 +26,12 @@ class RoboticHover {
 		this.addPatchesToRoom = () => {
 			this.specs.patches.forEach(patchCoord => {
 				//D = Dirty
-				this.room[patchCoord[0]][patchCoord[1]] = "D";
+				try {
+					this.room[patchCoord[0]][patchCoord[1]] = "D";
+				} 
+				catch(err){
+					document.getElementsByClassName('results')[0].innerHTML = "Please check specs and try again";
+				}
 			});
 		}
 		this.move = (direction) => {
@@ -58,11 +63,12 @@ class RoboticHover {
 			this.room[this.currentPosition[0]][this.currentPosition[1]] = "R";
 		}
 		this.isMovingRobotPossible = (direc) => {
-			let roomX = this.room.length;
-			let roomY = this.room[this.currentPosition[1]].length;
+			// let roomX = this.room.length;
+			// console.log(roomX, this.currentPosition);
+			// let roomY = this.room[this.currentPosition[1]].length;
 			switch(direc){
 				case "E":
-					return this.currentPosition[1] == (this.room[this.currentPosition[1]].length - 1) ? null : 1;
+					return this.currentPosition[1] == (this.room[this.currentPosition[0]].length - 1) ? null : 1;
 					break;
 
 				case "W":
@@ -149,15 +155,14 @@ class RoboticHover {
 			this.roomInit();
 			this.addPatchesToRoom();
 			let result = this.robotPleaseCleanTheRoom();
-			return result;
+			// return result;
 			// let resultJSONFormat = JSON.stringify(result);
 			// return resultJSONFormat;
 		}
 
 		//run
-		this.runService();
+		this.runService()
 	}
-
 }
 
 module.exports = RoboticHover;
