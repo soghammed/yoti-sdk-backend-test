@@ -1,11 +1,15 @@
 ## Solution  
 db connection details within index.js  
-  
+
+```javascript
 cd into root  
 npm install  
-node index  
-navigate to localhost:1111 and enter input or add "/{input}" to url;  
-  
+npm start  
+navigate to localhost:1111 and enter input or add "/{input}" to url; 
+
+
+NOTE: db & table initialized on server boot;
+```
   
 Yoti SDK Back-end test
 ======================
