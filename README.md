@@ -1,3 +1,12 @@
+## Solution
+db connection details within index.js
+
+cd into root
+npm install
+node index
+navigate to localhost:1111 and enter input or add "/{input}" to url;
+
+
 Yoti SDK Back-end test
 ======================
 

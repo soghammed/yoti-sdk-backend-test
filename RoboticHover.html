@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>RoboticHover</title>
+	<script
+	  src="https://code.jquery.com/jquery-3.4.0.js"
+	  integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
+	  crossorigin="anonymous"></script>
+	<style>
+		.wrapper{
+			width:50%;margin:auto;text-align: center;position:relative;top:100px
+		}
+		textarea{
+			width:300px;
+			height:250px;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="wrapper">
+		<h3>Input Specs</h3>
+		<form method="post" action="/addInput" id="inputForm">
+			<textarea name="input"></textarea><br/>
+			<input type="submit" value="run service"></input>
+		</form>
+		<hr>
+		<h3>Result:</h3>
+		<div class="results">
+			Will appear here
+		</div>
+	</div>
+	
+	<script>
+		$(document).ready(() => {
+			$('#inputForm').submit(e => {
+				e.preventDefault();
+				$.ajax({
+					url: "/addInput/"+$("textarea[name='input']").val(),
+					// data: {input: $("textarea[name='input']").val()},
+					success: function(data, status){
+						if(status.trim() == "success"){
+							document.getElementsByClassName('results')[0].innerHTML = JSON.stringify(data);
+						}
+					},
+					error: (err) => {
+						document.getElementsByClassName('results')[0].innerHTML = "Please check specs and try again";
+					}
+				})
+			});
+		})
+	</script>
+</body>
+</html>
